@@ -1,0 +1,72 @@
+﻿# Python environments
+.venv/
+venv/
+env/
+
+# Python generated files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test and tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local editor and IDE settings
+.vscode/
+.idea/
+
+# Secrets and local environment configuration
+.env
+.env.*
+!.env.example
+
+# Local databases and logs
+*.sqlite
+*.sqlite3
+*.db
+*.log
+
+# Generated datasets and benchmark outputs
+benchmark/data/
+benchmark/metadata/
+benchmark/reports/
+reports/
+
+# Generated indexes and model artifacts
+*.faiss
+*.npy
+*.npz
+*.joblib
+*.pkl
+*.pickle
+*.index
+
+# Build and temporary directories
+build/
+dist/
+bin/
+tmp/
+temp/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Research scripts with machine-specific PAN-PC-11 paths
+src/similarity/analyze_pan_tfidf_errors.py
+src/similarity/build_pan_tfidf_index.py
+src/similarity/evaluate_pan_tfidf.py
+tests/test_pan_passage_segmentation.py
+tests/test_pan_tfidf_index.py
+benchmark/scripts/build_pan_pc11_metadata.py
+benchmark/scripts/build_pan_relationship_inventory.py
+benchmark/scripts/build_pan_split_manifest.py
+benchmark/scripts/validate_pan_annotation_spans.py
+
+# Local PAN-PC-11 offset verification script
+verify_pan_offsets.py

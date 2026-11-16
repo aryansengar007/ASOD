@@ -1,0 +1,77 @@
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://asod.local/schemas/document_pair.schema.json",
+  "title": "ASOD Document Pair Annotation",
+  "description": "Schema for document-level reuse labels, separate from passage-level overlap annotations.",
+  "type": "object",
+  "additionalProperties": false,
+  
+  "required": [
+    "pair_id",
+    "source_document_id",
+    "target_document_id",
+    "reuse_status",
+    "annotation_method",
+    "review_status"
+  ],
+  "properties": {
+    "pair_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_document_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_document_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reuse_status": {
+      "type": "string",
+      "enum": [
+        "reuse_present",
+        "no_reuse",
+        "uncertain"
+      ]
+    },
+    "annotation_method": {
+      "type": "string",
+      "enum": [
+        "synthetic_generation",
+        "manual_annotation",
+        "source_dataset_annotation",
+        "algorithmic_alignment",
+        "hybrid"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "not_reviewed",
+        "reviewed",
+        "disputed"
+      ]
+    },
+    "annotator_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_annotation_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "Original annotation identifier from an external dataset, if available."
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

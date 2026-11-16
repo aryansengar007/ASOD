@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://asod.local/schemas/overlap.schema.json",
+  "title": "ASOD Overlap Annotation",
+  "description": "Schema for passage-level textual overlap annotations in the ASOD benchmark.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "annotation_id",
+    "source_document_id",
+    "target_document_id",
+    "overlap_type",
+    "source_start",
+    "source_end",
+    "target_start",
+    "target_end",
+    "citation_status",
+    "annotation_method",
+    "review_status"
+  ],
+  "properties": {
+    "annotation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_document_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_document_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "overlap_type": {
+      "type": "string",
+      "enum": [
+        "exact_reuse",
+        "near_copy",
+        "paraphrased_reuse",
+        "llm_paraphrased_reuse",
+        "mixed_reuse",
+        "undetermined"
+      ]
+    },
+    "source_start": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_end": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "target_start": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "target_end": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "citation_status": {
+      "type": "string",
+      "enum": [
+        "cited",
+        "uncited",
+        "quotation_with_citation",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "annotation_method": {
+      "type": "string",
+      "enum": [
+        "synthetic_generation",
+        "manual_annotation",
+        "source_dataset_annotation",
+        "algorithmic_alignment",
+        "hybrid"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "not_reviewed",
+        "reviewed",
+        "disputed"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

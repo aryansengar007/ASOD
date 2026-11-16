@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ASOD Privacy Policy">
+    <title>Privacy Policy | ASOD</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/asod-logo-1.svg">
+    <style>
+        :root {
+            color-scheme: dark;
+            --background: #0a1220;
+            --surface: #111e30;
+            --border: #263950;
+            --text: #e8eff7;
+            --muted: #96a9bf;
+            --accent: #39bad5;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        header, footer {
+            padding: 18px 5%;
+            border-bottom: 1px solid var(--border);
+        }
+        header a, footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        main {
+            width: min(850px, 90%);
+            margin: 45px auto 65px;
+        }
+        .content {
+            padding: 28px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--surface);
+        }
+        h1 { font-size: 30px; }
+        h2 { margin-top: 28px; font-size: 17px; }
+        p, li { color: var(--muted); }
+        footer { border-top: 1px solid var(--border); border-bottom: 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/">← Back to ASOD</a>
+    </header>
+
+    <main>
+        <article class="content">
+            <h1>Privacy Policy</h1>
+            <p>Last updated: 17 November 2026</p>
+
+            <p>
+                This Privacy Policy explains how the Assignment Similarity
+                and Overlap Detector (ASOD) handles documents submitted
+                through its comparison interface.
+            </p>
+
+            <h2>1. Documents you upload</h2>
+            <p>
+                ASOD currently accepts TXT and DOCX documents. When you run
+                a comparison, the selected files are transmitted to the
+                ASOD application backend for text extraction and comparison.
+            </p>
+
+            <h2>2. Processing and storage</h2>
+            <p>
+                The current application implementation processes uploaded
+                file contents in memory and does not implement persistent
+                storage of uploaded documents or comparison results.
+                Temporary processing occurs while the request is handled.
+            </p>
+            <p>
+                This statement describes the application code, not any
+                additional infrastructure, hosting, reverse proxies,
+                operating-system logs, or services that may be introduced
+                when someone deploys or modifies the application.
+            </p>
+
+            <h2>3. Information collected</h2>
+            <p>
+                The current application does not implement user accounts,
+                analytics, or third-party tracking integrations. The
+                application processes document filenames and contents
+                as needed to perform the requested comparison.
+            </p>
+
+            <h2>4. Your responsibilities</h2>
+            <p>
+                Only upload documents that you are authorized to use.
+                Avoid submitting confidential, sensitive, or personal
+                information unless you have appropriate permission and
+                understand the environment in which ASOD is running.
+            </p>
+
+            <h2>5. Changes to this policy</h2>
+            <p>
+                This policy may be updated if application functionality,
+                data handling, or deployment arrangements change.
+            </p>
+
+            <h2>6. Contact</h2>
+            <p>
+                ASOD is developed by Aryan Sengar. No dedicated support
+                email address is currently provided through this application.
+            </p>
+        </article>
+    </main>
+
+    <footer>
+        © 2026 Aryan Sengar · ASOD
+    </footer>
+</body>
+</html>

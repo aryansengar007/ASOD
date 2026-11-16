@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://asod.local/schemas/benchmark_metadata.schema.json",
+  "title": "ASOD Benchmark Metadata",
+  "description": "Schema describing the ASOD benchmark as a whole.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "benchmark_name",
+    "version",
+    "description",
+    "language",
+    "intended_use",
+    "limitations",
+    "split_strategy",
+    "provenance_policy"
+  ],
+  "properties": {
+    "benchmark_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 2
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "document_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "topic_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "source_group_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "intended_use": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "split_strategy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance_policy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "license_policy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "last_updated": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "pilot",
+        "validated",
+        "release"
+      ]
+    }
+  }
+}

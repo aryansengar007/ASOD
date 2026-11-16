@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://asod.local/schemas/document.schema.json",
+  "title": "ASOD Benchmark Document",
+  "description": "Schema for a document used in the Assignment Similarity and Overlap Detector benchmark.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "document_id",
+    "source_group_id",
+    "document_type",
+    "origin_type",
+    "transformation_type",
+    "language",
+    "word_count",
+    "split",
+    "provenance_status",
+    "license_status"
+  ],
+  "properties": {
+    "document_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_group_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_document_id": {
+      "type": ["string", "null"]
+    },
+    "topic_id": {
+      "type": ["string", "null"]
+    },
+    "document_type": {
+      "type": "string",
+      "enum": [
+        "assignment",
+        "essay",
+        "answer",
+        "passage",
+        "reference_document",
+        "book_text"
+      ]
+    },
+    "origin_type": {
+      "type": "string",
+      "enum": [
+        "human",
+        "ai",
+        "human_ai_mixed",
+        "unknown"
+      ]
+    },
+    "transformation_type": {
+      "type": "string",
+      "enum": [
+        "original",
+        "exact_copy",
+        "minor_edit",
+        "synonym_substitution",
+        "sentence_restructure",
+        "human_paraphrase",
+        "llm_paraphrase",
+        "ai_polished",
+        "human_edited_ai",
+        "mixed_transformation",
+        "unknown"
+      ]
+    },
+    "language": {
+      "type": "string",
+      "minLength": 2
+    },
+    "word_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "generator_name": {
+      "type": ["string", "null"]
+    },
+    "prompt_id": {
+      "type": ["string", "null"]
+    },
+    "citation_condition": {
+      "type": ["string", "null"],
+      "enum": [
+        null,
+        "no_citation",
+        "citation_present",
+        "quotation_with_citation",
+        "reference_only",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "split": {
+      "type": "string",
+      "enum": [
+        "train",
+        "validation",
+        "test",
+        "shared_reference"
+      ]
+    },
+    "provenance_status": {
+      "type": "string",
+      "enum": [
+        "verified",
+        "partially_verified",
+        "unverified"
+      ]
+    },
+    "license_status": {
+      "type": "string",
+      "enum": [
+        "original",
+        "research_use",
+        "restricted",
+        "unknown"
+      ]
+    }
+  }
+}

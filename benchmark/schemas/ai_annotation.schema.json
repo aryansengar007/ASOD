@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://asod.local/schemas/ai_annotation.schema.json",
+  "title": "ASOD AI Text Annotation",
+  "description": "Schema for document-level or passage-level AI authorship annotations in the ASOD benchmark.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "annotation_id",
+    "document_id",
+    "ai_label",
+    "annotation_level",
+    "verification_status"
+  ],
+  "properties": {
+    "annotation_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "document_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ai_label": {
+      "type": "string",
+      "enum": [
+        "human_written",
+        "ai_generated",
+        "ai_paraphrased",
+        "ai_polished_human",
+        "human_edited_ai",
+        "human_ai_mixed",
+        "human_initiated_ai_continued",
+        "unknown_or_unverified"
+      ]
+    },
+    "annotation_level": {
+      "type": "string",
+      "enum": [
+        "document",
+        "section",
+        "paragraph",
+        "sentence"
+      ]
+    },
+    "generator_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "prompt_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_span_start": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "source_span_end": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "human_edit_level": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        null,
+        "none",
+        "light",
+        "moderate",
+        "heavy",
+        "unknown"
+      ]
+    },
+    "verification_status": {
+      "type": "string",
+      "enum": [
+        "verified",
+        "partially_verified",
+        "unverified"
+      ]
+    },
+    "annotation_method": {
+      "type": "string",
+      "enum": [
+        "controlled_generation",
+        "manual_annotation",
+        "source_dataset_annotation",
+        "hybrid",
+        "unknown"
+      ]
+    },
+    "notes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
