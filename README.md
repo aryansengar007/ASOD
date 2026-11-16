@@ -52,6 +52,25 @@
 <br/>
 
 <!-- ╔══════════════════════════════════════════════════════════════╗ -->
+<!--                      SITE PREVIEW                              -->
+<!-- ╚══════════════════════════════════════════════════════════════╝ -->
+
+<div align="center">
+
+[![Site Preview](assets_readme/hero.png)](https://note-4-you.netlify.app/)
+
+*Left to right: the sealed envelope, the message, the photo question, and the reply options ↑*
+
+</div>
+
+<br/>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:11264b,100:2a5db0&height=2" width="100%"/>
+
+<br/>
+
+<!-- ╔══════════════════════════════════════════════════════════════╗ -->
 <!--                     ABOUT THE PROJECT                          -->
 <!-- ╚══════════════════════════════════════════════════════════════╝ -->
 
