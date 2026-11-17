@@ -4,7 +4,7 @@
 <!--                   ANIMATED WAVE HEADER                         -->
 <!-- ╚══════════════════════════════════════════════════════════════╝ -->
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:11264b,50:1d3b70,100:2a5db0&height=220&section=header&text=ASOD&fontSize=62&fontColor=ffffff&fontAlignY=38&desc=Assignment%20Similarity%20%26%20Overlap%20Detector%20%7C%20FastAPI%20%7C%20Python&descSize=16&descAlignY=60&animation=fadeIn" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:6366F1,40:8B5CF6,80:06B6D4,100:06B6D4&height=220&section=header&text=Editkaro.in-v2&fontSize=62&fontColor=ffffff&fontAlignY=38&desc=Transforming%20Content%20Into%20Viral%20Stories%20%E2%80%94%20React%20%7C%20GSAP%20%7C%20Framer%20Motion&descSize=16&descAlignY=60&animation=fadeIn" width="100%"/>
 
 <!-- ╔══════════════════════════════════════════════════════════════╗ -->
 <!--                  ANIMATED TYPING TAGLINE                       -->
@@ -358,7 +358,7 @@ The benchmark documentation records dataset provenance, annotation handling, and
 <!--                   ANIMATED WAVE FOOTER                         -->
 <!-- ╚══════════════════════════════════════════════════════════════╝ -->
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:11264b,50:1d3b70,100:2a5db0&height=130&section=footer&animation=fadeIn" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:6366F1,40:8B5CF6,80:06B6D4,100:06B6D4&height=130&section=footer&animation=fadeIn" width="100%"/>
 
 <div align="center">
 
