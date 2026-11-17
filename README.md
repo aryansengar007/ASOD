@@ -10,7 +10,6 @@
 <!--                  ANIMATED TYPING TAGLINE                       -->
 <!-- ╚══════════════════════════════════════════════════════════════╝ -->
 
-<!--<img src="public/asod-logo.svg" alt="ASOD Logo" width="200">-->
 ![Dashboard 1](public/asod-logo.svg)
 
 <br/>
