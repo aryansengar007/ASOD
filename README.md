@@ -52,14 +52,12 @@
 <br/>
 
 <!-- ╔══════════════════════════════════════════════════════════════╗ -->
-<!--                      SITE PREVIEW                              -->
+<!--                      Dashboard Preview                              -->
 <!-- ╚══════════════════════════════════════════════════════════════╝ -->
 
 <div align="center">
 
-[![Site Preview](assets_readme/hero.png)](https://note-4-you.netlify.app/)
-
-*Left to right: the sealed envelope, the message, the photo question, and the reply options ↑*
+![Dashboard 1](public/Dashboard_1.png)
 
 </div>
 
