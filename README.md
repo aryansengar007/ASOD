@@ -4,7 +4,7 @@
 <!--                   ANIMATED WAVE HEADER                         -->
 <!-- ╚══════════════════════════════════════════════════════════════╝ -->
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:11264b,50:1d3b70,100:2a5db0&height=220&section=header&text=ASOD&fontSize=62&fontColor=ffffff&fontAlignY=38&desc=Assignment%20Similarity%20%26%20Overlap%20Detector%20%7C%20FastAPI%20%7C%20Python&descSize=16&descAlignY=60&animation=fadeIn" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:11264b,50:1d3b70,100:2a5db0&height=130&section=footer&animation=fadeIn" width="100%"/>
 
 <!-- ╔══════════════════════════════════════════════════════════════╗ -->
 <!--                  ANIMATED TYPING TAGLINE                       -->
