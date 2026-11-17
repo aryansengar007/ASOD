@@ -61,8 +61,6 @@
 
 </div>
 
-<br/>
-
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
 <img src="public/wave-divider.svg" alt="" width="100%" height="2"/>
 
