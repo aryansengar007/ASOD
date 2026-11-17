@@ -4,7 +4,10 @@
 <!--                   ANIMATED WAVE HEADER                         -->
 <!-- ╚══════════════════════════════════════════════════════════════╝ -->
 
-<img src="public/wave-header.svg" alt="ASOD header" width="100%"/>
+<img src="https://readme-typing-svg.demolab.com?font=Playfair+Display&weight=700&size=60&duration=3000&pause=1500&color=2A5DB0&center=true&vCenter=true&width=800&height=100&lines=ASOD;Assignment+Similarity+%26+Overlap+Detector" alt="ASOD"/>
+
+![FastAPI](https://img.shields.io/badge/FastAPI-Python-11264b?style=for-the-badge&logo=fastapi&logoColor=white)
+![Evidence](https://img.shields.io/badge/Evidence%20for-Human%20Review-2a5db0?style=for-the-badge)
 
 <!-- ╔══════════════════════════════════════════════════════════════╗ -->
 <!--                  ANIMATED TYPING TAGLINE                       -->
@@ -47,7 +50,7 @@
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<img src="public/wave-divider.svg" alt="" width="100%" height="2"/>
+---
 
 <br/>
 
@@ -61,8 +64,10 @@
 
 </div>
 
+<br/>
+
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<img src="public/wave-divider.svg" alt="" width="100%" height="2"/>
+---
 
 <br/>
 
@@ -93,7 +98,7 @@ Instead of presenting a single similarity score as a plagiarism verdict, ASOD pr
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<img src="public/wave-divider.svg" alt="" width="100%" height="2"/>
+---
 
 <br/>
 
@@ -138,7 +143,7 @@ A human reviewer interprets the evidence in context
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<img src="public/wave-divider.svg" alt="" width="100%" height="2"/>
+---
 
 <br/>
 
@@ -171,7 +176,7 @@ A human reviewer interprets the evidence in context
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<img src="public/wave-divider.svg" alt="" width="100%" height="2"/>
+---
 
 <br/>
 
@@ -223,7 +228,7 @@ ASOD/
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<img src="public/wave-divider.svg" alt="" width="100%" height="2"/>
+---
 
 <br/>
 
@@ -284,7 +289,7 @@ python -m pytest tests/test_document_loader.py tests/test_comparison_service.py 
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<img src="public/wave-divider.svg" alt="" width="100%" height="2"/>
+---
 
 <br/>
 
@@ -306,7 +311,7 @@ python -m pytest tests/test_document_loader.py tests/test_comparison_service.py 
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<img src="public/wave-divider.svg" alt="" width="100%" height="2"/>
+---
 
 <br/>
 
@@ -325,7 +330,7 @@ The benchmark documentation records dataset provenance, annotation handling, and
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-<img src="public/wave-divider.svg" alt="" width="100%" height="2"/>
+---
 
 <br/>
 
@@ -356,7 +361,8 @@ The benchmark documentation records dataset provenance, annotation handling, and
 <!--                   ANIMATED WAVE FOOTER                         -->
 <!-- ╚══════════════════════════════════════════════════════════════╝ -->
 
-<img src="public/wave-footer.svg" alt="" width="100%"/>
+![ASOD](https://img.shields.io/badge/ASOD-Assignment%20Similarity%20%26%20Overlap%20Detector-11264b?style=for-the-badge)
+![Author](https://img.shields.io/badge/Made%20by-Aryan%20Sengar-2a5db0?style=for-the-badge)
 
 <div align="center">
 
