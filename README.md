@@ -4,10 +4,7 @@
 <!--                   ANIMATED WAVE HEADER                         -->
 <!-- ╚══════════════════════════════════════════════════════════════╝ -->
 
-<img src="https://readme-typing-svg.demolab.com?font=Playfair+Display&weight=700&size=60&duration=3000&pause=1500&color=2A5DB0&center=true&vCenter=true&width=800&height=100&lines=ASOD;Assignment+Similarity+%26+Overlap+Detector" alt="ASOD"/>
-
-![FastAPI](https://img.shields.io/badge/FastAPI-Python-11264b?style=for-the-badge&logo=fastapi&logoColor=white)
-![Evidence](https://img.shields.io/badge/Evidence%20for-Human%20Review-2a5db0?style=for-the-badge)
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:11264b,50:1d3b70,100:2a5db0&height=220&section=header&text=ASOD&fontSize=62&fontColor=ffffff&fontAlignY=38&desc=Assignment%20Similarity%20%26%20Overlap%20Detector%20%7C%20FastAPI%20%7C%20Python&descSize=16&descAlignY=60&animation=fadeIn" width="100%"/>
 
 <!-- ╔══════════════════════════════════════════════════════════════╗ -->
 <!--                  ANIMATED TYPING TAGLINE                       -->
@@ -50,7 +47,7 @@
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:11264b,100:2a5db0&height=2" width="100%"/>
 
 <br/>
 
@@ -67,7 +64,7 @@
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:11264b,100:2a5db0&height=2" width="100%"/>
 
 <br/>
 
@@ -98,7 +95,7 @@ Instead of presenting a single similarity score as a plagiarism verdict, ASOD pr
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:11264b,100:2a5db0&height=2" width="100%"/>
 
 <br/>
 
@@ -143,7 +140,7 @@ A human reviewer interprets the evidence in context
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:11264b,100:2a5db0&height=2" width="100%"/>
 
 <br/>
 
@@ -176,7 +173,7 @@ A human reviewer interprets the evidence in context
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:11264b,100:2a5db0&height=2" width="100%"/>
 
 <br/>
 
@@ -228,7 +225,7 @@ ASOD/
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:11264b,100:2a5db0&height=2" width="100%"/>
 
 <br/>
 
@@ -289,7 +286,7 @@ python -m pytest tests/test_document_loader.py tests/test_comparison_service.py 
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:11264b,100:2a5db0&height=2" width="100%"/>
 
 <br/>
 
@@ -311,7 +308,7 @@ python -m pytest tests/test_document_loader.py tests/test_comparison_service.py 
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:11264b,100:2a5db0&height=2" width="100%"/>
 
 <br/>
 
@@ -330,7 +327,7 @@ The benchmark documentation records dataset provenance, annotation handling, and
 <br/>
 
 <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ WAVE DIVIDER ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
----
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:11264b,100:2a5db0&height=2" width="100%"/>
 
 <br/>
 
@@ -361,8 +358,7 @@ The benchmark documentation records dataset provenance, annotation handling, and
 <!--                   ANIMATED WAVE FOOTER                         -->
 <!-- ╚══════════════════════════════════════════════════════════════╝ -->
 
-![ASOD](https://img.shields.io/badge/ASOD-Assignment%20Similarity%20%26%20Overlap%20Detector-11264b?style=for-the-badge)
-![Author](https://img.shields.io/badge/Made%20by-Aryan%20Sengar-2a5db0?style=for-the-badge)
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:11264b,50:1d3b70,100:2a5db0&height=130&section=footer&animation=fadeIn" width="100%"/>
 
 <div align="center">
 
