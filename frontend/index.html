@@ -1,806 +1,175 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>ASOD | Document Analysis</title>
-    <meta
-        name="description"
-        content="Compare documents and inspect exact and near-copy text overlap evidence."
-    >
-
-    <!-- Browser tab icon: uses the same logo as the interface -->
-    <link rel="icon" type="image/svg" href="/assets/asod-logo-1.svg"> 
-
-    <style>
-        :root {
-            color-scheme: dark;
-            --background: #0a1220;
-            --header: #0e1929;
-            --surface: #111e30;
-            --surface-alt: #0d1929;
-            --surface-hover: #17283d;
-            --border: #263950;
-            --border-strong: #38536e;
-            --text: #e8eff7;
-            --muted: #96a9bf;
-            --subtle: #71869f;
-            --accent: #39bad5;
-            --accent-hover: #5acbe2;
-            --success: #59c69b;
-            --warning: #e5b76d;
-            --danger: #ef8585;
-            --radius: 8px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: var(--background);
-            color: var(--text);
-            font-family: Inter, "Segoe UI", Arial, sans-serif;
-            font-size: 14px;
-            line-height: 1.55;
-        }
-
-        button,
-        input {
-            font: inherit;
-        }
-
-        button:focus-visible,
-        input:focus-visible,
-        label:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 3px;
-        }
-
-        .topbar {
-            min-height: 70px;
-            padding: 0 max(5%, calc((100% - 1320px) / 2));
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            background: var(--header);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            min-width: 0;
-        }
-
-        .brand-logo {
-            display: block;
-            width: auto;
-            max-width: 170px;
-            height: 42px;
-            object-fit: contain;
-            object-position: left center;
-        }
-
-        .brand-divider {
-            width: 1px;
-            height: 25px;
-            background: var(--border-strong);
-        }
-
-        .brand-label {
-            color: var(--muted);
-            font-size: 11px;
-            font-weight: 650;
-            letter-spacing: 0.11em;
-            white-space: nowrap;
-        }
-
-        .system-status {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            color: var(--muted);
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-        .status-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--success);
-        }
-
-        main {
-            width: min(1180px, 90%);
-            margin: 42px auto 70px;
-        }
-
-        .page-heading {
-            margin-bottom: 27px;
-        }
-
-        .eyebrow {
-            color: var(--accent);
-            font-size: 11px;
-            font-weight: 750;
-            letter-spacing: 0.13em;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            margin: 8px 0 9px;
-            font-size: clamp(27px, 4vw, 35px);
-            line-height: 1.2;
-            letter-spacing: -0.035em;
-        }
-
-        .page-description {
-            max-width: 720px;
-            margin: 0;
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .workspace {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr);
-            gap: 18px;
-        }
-
-        .panel {
-            padding: 23px;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            background: var(--surface);
-        }
-
-        .panel-heading {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 18px;
-        }
-
-        .panel-heading h2 {
-            margin: 0 0 4px;
-            font-size: 16px;
-            font-weight: 680;
-        }
-
-        .panel-heading p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        .limit-label {
-            padding: 5px 9px;
-            border: 1px solid var(--border);
-            border-radius: 5px;
-            color: var(--muted);
-            font-size: 11px;
-            white-space: nowrap;
-        }
-
-        .dropzone {
-            min-height: 190px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            border: 1px dashed var(--border-strong);
-            border-radius: 7px;
-            background: var(--surface-alt);
-            text-align: center;
-            transition: border-color 0.15s, background 0.15s;
-        }
-
-        .dropzone.drag-active {
-            border-color: var(--accent);
-            background: #10263a;
-        }
-
-        .upload-symbol {
-            width: 38px;
-            height: 38px;
-            display: grid;
-            place-items: center;
-            margin-bottom: 3px;
-            border: 1px solid var(--border-strong);
-            border-radius: 7px;
-            color: var(--accent);
-            font-size: 19px;
-        }
-
-        .dropzone strong {
-            font-size: 14px;
-        }
-
-        .dropzone p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        .browse-button,
-        .primary-button,
-        .secondary-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 37px;
-            padding: 8px 15px;
-            border: 1px solid transparent;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.15s, border-color 0.15s;
-        }
-
-        .browse-button,
-        .primary-button {
-            background: var(--accent);
-            color: #07151d;
-        }
-
-        .browse-button:hover,
-        .primary-button:hover:not(:disabled) {
-            background: var(--accent-hover);
-        }
-
-        .primary-button:disabled {
-            opacity: 0.42;
-            cursor: not-allowed;
-        }
-
-        .secondary-button {
-            border-color: var(--border-strong);
-            background: transparent;
-            color: var(--muted);
-        }
-
-        .secondary-button:hover {
-            border-color: var(--accent);
-            color: var(--text);
-        }
-
-        .file-input {
-            display: none;
-        }
-
-        .file-section {
-            margin-top: 19px;
-        }
-
-        .file-section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 9px;
-        }
-
-        .file-section-header strong {
-            font-size: 12px;
-        }
-
-        .file-count {
-            color: var(--muted);
-            font-size: 11px;
-        }
-
-        .file-list {
-            display: grid;
-            gap: 7px;
-        }
-
-        .file-item {
-            min-width: 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            padding: 10px 12px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            background: var(--surface-alt);
-        }
-
-        .file-details {
-            min-width: 0;
-            display: flex;
-            align-items: center;
-            gap: 11px;
-        }
-
-        .file-type {
-            width: 33px;
-            height: 36px;
-            flex: 0 0 auto;
-            display: grid;
-            place-items: center;
-            border: 1px solid var(--border-strong);
-            border-radius: 5px;
-            color: var(--accent);
-            font-size: 9px;
-            font-weight: 750;
-        }
-
-        .file-name {
-            overflow: hidden;
-            color: var(--text);
-            font-size: 12px;
-            font-weight: 600;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .file-meta {
-            color: var(--subtle);
-            font-size: 11px;
-        }
-
-        .remove-button {
-            flex: 0 0 auto;
-            padding: 5px 8px;
-            border: 1px solid var(--border);
-            border-radius: 5px;
-            background: transparent;
-            color: var(--muted);
-            font-size: 11px;
-            cursor: pointer;
-        }
-
-        .remove-button:hover {
-            border-color: var(--danger);
-            color: var(--danger);
-        }
-
-        .upload-footer {
-            margin-top: 20px;
-            padding-top: 17px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            border-top: 1px solid var(--border);
-        }
-
-        .helper-text {
-            color: var(--muted);
-            font-size: 11px;
-        }
-
-        .message {
-            display: none;
-            margin-top: 14px;
-            padding: 10px 12px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 12px;
-            overflow-wrap: anywhere;
-        }
-
-        .message.info {
-            display: block;
-            color: var(--accent);
-            background: #102334;
-            border-color: #24485b;
-        }
-
-        .message.error {
-            display: block;
-            color: var(--danger);
-            background: #281b23;
-            border-color: #68404a;
-        }
-
-        .results {
-            margin-top: 31px;
-        }
-
-        .results-header {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .results-header h2 {
-            margin: 0 0 3px;
-            font-size: 20px;
-        }
-
-        .results-header p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 11px;
-            margin-bottom: 16px;
-        }
-
-        .summary-item {
-            padding: 15px 16px;
-            border: 1px solid var(--border);
-            border-radius: 7px;
-            background: var(--surface);
-        }
-
-        .summary-value {
-            display: block;
-            font-size: 25px;
-            font-weight: 720;
-            line-height: 1.25;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .summary-label {
-            color: var(--muted);
-            font-size: 11px;
-        }
-
-        .pair-card {
-            margin-bottom: 12px;
-            padding: 17px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--surface);
-        }
-
-        .pair-title {
-            margin: 0 0 4px;
-            font-size: 13px;
-            font-weight: 680;
-            overflow-wrap: anywhere;
-        }
-
-        .pair-meta {
-            color: var(--muted);
-            font-size: 11px;
-        }
-
-        .evidence-section {
-            margin-top: 19px;
-        }
-
-        .evidence-heading {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 0 0 10px;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        .evidence-heading::before {
-            content: "";
-            width: 3px;
-            height: 15px;
-            border-radius: 2px;
-            background: var(--accent);
-        }
-
-        .evidence-heading.near::before {
-            background: var(--warning);
-        }
-
-        .evidence-item {
-            margin-top: 9px;
-            padding: 13px;
-            border: 1px solid var(--border);
-            border-radius: 7px;
-            background: var(--surface-alt);
-        }
-
-        .evidence-label {
-            margin-bottom: 10px;
-            color: var(--accent);
-            font-size: 10px;
-            font-weight: 750;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .evidence-label.near {
-            color: var(--warning);
-        }
-
-        .evidence-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-            gap: 11px;
-        }
-
-        .passage {
-            min-width: 0;
-        }
-
-        .passage-label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--muted);
-            font-size: 10px;
-            font-weight: 650;
-        }
-
-        .passage-text {
-            min-height: 68px;
-            max-height: 260px;
-            margin: 0;
-            padding: 10px;
-            overflow: auto;
-            border: 1px solid var(--border);
-            border-radius: 5px;
-            background: #101d2e;
-            color: var(--text);
-            white-space: pre-wrap;
-            overflow-wrap: anywhere;
-            font-family: inherit;
-            font-size: 11px;
-            line-height: 1.6;
-        }
-
-        .offset {
-            margin-top: 5px;
-            color: var(--subtle);
-            font-size: 10px;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .evidence-stats {
-            margin-top: 10px;
-            color: var(--muted);
-            font-size: 10px;
-        }
-
-        .empty-state {
-            padding: 20px;
-            border: 1px dashed var(--border-strong);
-            border-radius: 6px;
-            color: var(--muted);
-            text-align: center;
-            font-size: 12px;
-        }
-
-        .notice {
-            margin-top: 15px;
-            padding: 12px 14px;
-            border-left: 3px solid var(--warning);
-            background: #211e1a;
-            color: #d9c7a9;
-            font-size: 11px;
-        }
-
-        footer {
-    min-height: 65px;
-    padding: 20px 5%;
-    border-top: 1px solid var(--border);
-    color: var(--subtle);
-    font-size: 11px;
-}
-
-.footer-content {
-    width: min(1180px, 100%);
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px 20px;
-}
-
-.footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.footer-links a {
-    color: var(--muted);
-    text-decoration: none;
-}
-
-.footer-links a:hover {
-    color: var(--accent);
-}
-
-@media (max-width: 720px) {
-    .footer-content {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-
-        [hidden] {
-            display: none !important;
-        }
-
-        @media (max-width: 720px) {
-            .topbar {
-                padding: 0 5%;
-            }
-
-            .brand-logo {
-                max-width: 125px;
-                height: 36px;
-            }
-
-            .brand-label,
-            .system-status {
-                display: none;
-            }
-
-            main {
-                width: 92%;
-                margin-top: 29px;
-            }
-
-            .panel {
-                padding: 16px;
-            }
-
-            .panel-heading {
-                flex-direction: column;
-            }
-
-            .dropzone {
-                min-height: 165px;
-                padding: 18px;
-            }
-
-            .summary-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .evidence-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .upload-footer {
-                align-items: stretch;
-                flex-direction: column;
-            }
-
-            .primary-button {
-                width: 100%;
-            }
-        }
-    </style>
+    <meta name="description" content="Compare documents and inspect exact and near-copy text overlap evidence.">
+    <meta name="theme-color" content="#0a1220">
+    <link rel="icon" type="image/svg+xml" href="/assets/asod-logo-1.svg">
+    <link rel="stylesheet" href="/assets/css/asod.css">
 </head>
-
 <body>
-    <header class="topbar">
-        <div class="brand">
-            <!-- Interface logo: change this path if you rename your logo -->
-            <img
-                class="brand-logo"
-                src="/assets/asod-logo-2.svg"
-                alt="ASOD logo"
-            >
-            <span class="brand-divider"></span>
-            <span class="brand-label">DOCUMENT ANALYSIS</span>
-        </div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-        <div class="system-status">
-            <span class="status-dot"></span>
-            <span>Local analysis workspace</span>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="/" aria-label="ASOD, back to workspace">
+                <img class="brand__logo" src="/assets/asod-logo-2.svg" alt="ASOD">
+                <span class="brand__divider" aria-hidden="true"></span>
+                <span class="brand__label">DOCUMENT ANALYSIS</span>
+            </a>
+            <nav class="site-nav" aria-label="Primary">
+                <a href="/" aria-current="page">Workspace</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/terms">Terms</a>
+            </nav>
+            <span class="header-spacer"></span>
+            <div class="status-chip" id="apiStatus" data-state="checking" title="Result of GET /api/health">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span class="status-chip__text" id="apiStatusText" role="status">Checking server</span>
+            </div>
         </div>
     </header>
 
-    <main>
+    <main class="page" id="main">
         <section class="page-heading">
             <div class="eyebrow">Assignment Similarity &amp; Overlap Detector</div>
             <h1>Document comparison workspace</h1>
-            <p class="page-description">
-                Compare submitted documents, identify matching text passages,
-                and inspect the extracted-text locations supporting each result.
-            </p>
+            <p>Compare submitted documents, identify matching text passages, and inspect the extracted-text locations supporting each result.</p>
         </section>
+
+        <ol class="stepper" id="stepper" aria-label="Workflow">
+            <li class="step" data-status="current"><span class="step__num">1</span><span class="step__text"><span class="step__title">Upload documents</span><br><span class="step__desc">Add two or more TXT or DOCX files</span></span></li>
+            <li class="step" data-status="upcoming"><span class="step__num">2</span><span class="step__text"><span class="step__title">Run comparison</span><br><span class="step__desc">Every unique pair is compared</span></span></li>
+            <li class="step" data-status="upcoming"><span class="step__num">3</span><span class="step__text"><span class="step__title">Review evidence</span><br><span class="step__desc">Inspect passages with human judgement</span></span></li>
+        </ol>
 
         <div class="workspace">
-            <section class="panel">
-                <div class="panel-heading">
-                    <div>
-                        <h2>Upload documents</h2>
-                        <p>
-                            Select documents for pairwise textual overlap analysis.
-                        </p>
+            <aside class="workspace__side">
+                <section class="panel" aria-labelledby="uploadTitle">
+                    <div class="panel__header">
+                        <div>
+                            <h2 class="panel__title" id="uploadTitle">Upload documents</h2>
+                            <p class="panel__subtitle">Select documents for pairwise textual overlap analysis.</p>
+                        </div>
                     </div>
-                    <span class="limit-label">2–10 files · 10 MB each</span>
+                    <div class="panel__body">
+                        <div class="dropzone" id="dropzone">
+                            <div class="dropzone__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg></div>
+                            <div class="dropzone__title">Drag and drop documents here</div>
+                            <div class="dropzone__hint">TXT or DOCX &middot; 2 to 10 files &middot; 10 MB each</div>
+                            <button class="btn btn--primary" type="button" id="browseButton">Browse documents</button>
+                            <input class="sr-only" id="fileInput" type="file" accept=".txt,.docx" multiple tabindex="-1" aria-label="Select TXT or DOCX documents">
+                        </div>
+
+                        <div class="file-section">
+                            <div class="file-section__header">
+                                <h3 class="file-section__title">Selected documents</h3>
+                                <span class="file-section__count" id="fileCount">0 of 10 selected</span>
+                            </div>
+                            <ul class="file-list" id="fileList"></ul>
+                            <div class="stack" id="messages" aria-live="polite"></div>
+                        </div>
+
+                        <div class="panel__footer">
+                            <span class="helper-text" id="selectionHint">Add at least two documents to begin.</span>
+                            <button class="btn btn--primary btn--block" type="button" id="compareButton" disabled>Run comparison</button>
+                            <button class="btn btn--ghost btn--sm btn--block" type="button" id="clearButton" hidden>Clear all documents</button>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+            <section class="workspace__main" aria-labelledby="resultsHeading" aria-live="polite">
+                <h2 class="sr-only" id="resultsHeading">Comparison results</h2>
+
+                <div class="panel" id="stateEmpty">
+                    <div class="state">
+                        <div class="state__icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg></div>
+                        <div class="state__title">No comparison yet</div>
+                        <p class="state__text">Add at least two documents and run a comparison. Matching passages appear here with their source and target locations.</p>
+                        <div class="legend">
+                            <div class="legend__item"><span class="badge badge--exact">Exact reuse</span>Passages where a sequence of tokens matches exactly between two documents.</div>
+                            <div class="legend__item"><span class="badge badge--near">Near copy</span>Regions that closely overlap, with the matched and unmatched token counts shown.</div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="dropzone" id="dropzone">
-                    <div class="upload-symbol" aria-hidden="true">↑</div>
-                    <strong>Drag and drop your documents here</strong>
-                    <p>or browse your device to select files</p>
-                    <p>Supported formats: TXT and DOCX</p>
-
-                    <label class="browse-button" for="fileInput">
-                        Browse documents
-                    </label>
-
-                    <input
-                        class="file-input"
-                        id="fileInput"
-                        type="file"
-                        accept=".txt,.docx"
-                        multiple
-                    >
+                <div class="panel" id="stateLoading" hidden>
+                    <div class="state">
+                        <span class="spinner" style="width:28px;height:28px;color:var(--accent)" aria-hidden="true"></span>
+                        <div class="state__title" id="loadingTitle">Uploading documents</div>
+                        <p class="state__text" id="loadingText"></p>
+                        <div class="state__progress">
+                            <div class="progress" id="progress"><div class="progress__bar" id="progressBar"></div></div>
+                            <div class="state__progress-label" id="progressLabel">0%</div>
+                        </div>
+                        <button class="btn btn--secondary btn--sm" type="button" id="cancelButton">Cancel</button>
+                    </div>
                 </div>
 
-                <div class="file-section">
-                    <div class="file-section-header">
-                        <strong>Selected documents</strong>
-                        <span class="file-count" id="fileCount">
-                            0 of 10 selected
-                        </span>
+                <div class="panel" id="stateError" hidden>
+                    <div class="state" role="alert">
+                        <div class="state__icon state__icon--error"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5v.5"/></svg></div>
+                        <div class="state__title" id="errorTitle">Comparison failed</div>
+                        <p class="state__text" id="errorText"></p>
+                        <button class="btn btn--secondary" type="button" id="retryButton">Try again</button>
+                    </div>
+                </div>
+
+                <div id="results" hidden>
+                    <div class="results__header">
+                        <div>
+                            <h2 class="results__title">Comparison results</h2>
+                            <p class="results__subtitle" id="resultsSubtitle"></p>
+                        </div>
                     </div>
 
-                    <div class="file-list" id="fileList"></div>
+                    <div class="alert alert--warning" id="staleNotice" hidden style="margin-bottom:var(--space-4)">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5v.5"/></svg>
+                        <div class="alert__body"><p>The selected documents have changed since this comparison. Run the comparison again to update the results.</p></div>
+                    </div>
+
+                    <div class="summary-grid" id="summaryGrid"></div>
+
+                    <details class="panel disclosure" id="docsDisclosure" open>
+                        <summary><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>Documents analysed</summary>
+                        <div class="disclosure__body docs-table-wrap">
+                            <table class="docs-table">
+                                <thead><tr><th scope="col">Filename</th><th scope="col">Type</th><th scope="col" class="num">Words</th><th scope="col" class="num">Characters</th></tr></thead>
+                                <tbody id="docsBody"></tbody>
+                            </table>
+                        </div>
+                    </details>
+
+                    <div class="toolbar">
+                        <div class="toolbar__group">
+                            <div class="segmented" id="evidenceFilter" role="group" aria-label="Filter evidence type">
+                                <button type="button" data-filter="all" aria-pressed="true">All evidence</button>
+                                <button type="button" data-filter="exact" aria-pressed="false">Exact</button>
+                                <button type="button" data-filter="near" aria-pressed="false">Near copy</button>
+                            </div>
+                        </div>
+                        <div class="toolbar__group">
+                            <button class="btn btn--ghost btn--sm" type="button" id="expandAll">Expand all</button>
+                            <button class="btn btn--ghost btn--sm" type="button" id="collapseAll">Collapse all</button>
+                        </div>
+                    </div>
+
+                    <div id="pairResults"></div>
+
+                    <div class="notice">
+                        <strong>Read with care.</strong> These results identify textual overlap evidence. They do not establish plagiarism, authorship, intent, or improper conduct. Human review is required. Character offsets refer to the extracted text, not Word page numbers.
+                    </div>
                 </div>
-
-                <div class="upload-footer">
-                    <span class="helper-text" id="selectionHint">
-                        Select at least two documents to begin.
-                    </span>
-
-                    <button
-                        class="primary-button"
-                        id="compareButton"
-                        type="button"
-                        disabled
-                    >
-                        Run comparison
-                    </button>
-                </div>
-
-                <div class="message" id="message" role="status" aria-live="polite"></div>
             </section>
         </div>
-
-        <section class="results" id="results" hidden>
-            <div class="results-header">
-                <div>
-                    <h2>Comparison results</h2>
-                    <p id="resultsDescription"></p>
-                </div>
-            </div>
-
-            <div class="summary-grid" id="summaryGrid"></div>
-            <div id="pairResults"></div>
-
-            <div class="notice">
-                These results identify textual overlap evidence. They do not
-                establish plagiarism, authorship, intent, or improper conduct.
-                Human review is required.
-            </div>
-        </section>
     </main>
 
-    <footer>
-        <div class="footer-content">
-            <span>
-                © 2026 Aryan Sengar · ASOD — Assignment Similarity &amp; Overlap Detector
-            </span>
-
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span>&copy; 2026 Aryan Sengar &middot; ASOD, Assignment Similarity &amp; Overlap Detector</span>
             <nav class="footer-links" aria-label="Legal information">
                 <a href="/privacy">Privacy Policy</a>
                 <a href="/terms">Terms of Use</a>
@@ -808,410 +177,6 @@
         </div>
     </footer>
 
-    <script>
-        const fileInput = document.getElementById("fileInput");
-        const dropzone = document.getElementById("dropzone");
-        const fileList = document.getElementById("fileList");
-        const fileCount = document.getElementById("fileCount");
-        const selectionHint = document.getElementById("selectionHint");
-        const compareButton = document.getElementById("compareButton");
-        const message = document.getElementById("message");
-        const results = document.getElementById("results");
-        const summaryGrid = document.getElementById("summaryGrid");
-        const pairResults = document.getElementById("pairResults");
-
-        const MAX_FILES = 10;
-        const MAX_FILE_SIZE = 10 * 1024 * 1024;
-        const ALLOWED_EXTENSIONS = [".txt", ".docx"];
-
-        let selectedFiles = [];
-
-        function formatBytes(bytes) {
-            if (bytes < 1024) return `${bytes} B`;
-            if (bytes < 1024 * 1024) {
-                return `${(bytes / 1024).toFixed(1)} KB`;
-            }
-            return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
-        }
-
-        function showMessage(text, type = "info") {
-            message.textContent = text;
-            message.className = `message ${type}`;
-        }
-
-        function clearMessage() {
-            message.textContent = "";
-            message.className = "message";
-        }
-
-        function addFiles(incomingFiles) {
-            clearMessage();
-
-            for (const file of incomingFiles) {
-                const dot = file.name.lastIndexOf(".");
-                const extension = dot >= 0
-                    ? file.name.slice(dot).toLowerCase()
-                    : "";
-
-                if (!ALLOWED_EXTENSIONS.includes(extension)) {
-                    showMessage(
-                        `Unsupported file: ${file.name}. Select TXT or DOCX.`,
-                        "error"
-                    );
-                    continue;
-                }
-
-                if (file.size > MAX_FILE_SIZE) {
-                    showMessage(
-                        `File exceeds the 10 MB limit: ${file.name}`,
-                        "error"
-                    );
-                    continue;
-                }
-
-                if (file.size === 0) {
-                    showMessage(`The selected file is empty: ${file.name}`, "error");
-                    continue;
-                }
-
-                const duplicate = selectedFiles.some(existing =>
-                    existing.name === file.name &&
-                    existing.size === file.size &&
-                    existing.lastModified === file.lastModified
-                );
-
-                if (duplicate) continue;
-
-                if (selectedFiles.length >= MAX_FILES) {
-                    showMessage("A maximum of 10 documents is allowed.", "error");
-                    break;
-                }
-
-                selectedFiles.push(file);
-            }
-
-            renderFileList();
-        }
-
-        function renderFileList() {
-            fileList.replaceChildren();
-
-            selectedFiles.forEach((file, index) => {
-                const item = document.createElement("div");
-                item.className = "file-item";
-
-                const details = document.createElement("div");
-                details.className = "file-details";
-
-                const extension = file.name.split(".").pop().toUpperCase();
-
-                const type = document.createElement("div");
-                type.className = "file-type";
-                type.textContent = extension;
-
-                const textDetails = document.createElement("div");
-                textDetails.style.minWidth = "0";
-
-                const name = document.createElement("div");
-                name.className = "file-name";
-                name.textContent = file.name;
-
-                const meta = document.createElement("div");
-                meta.className = "file-meta";
-                meta.textContent = formatBytes(file.size);
-
-                textDetails.append(name, meta);
-                details.append(type, textDetails);
-
-                const remove = document.createElement("button");
-                remove.className = "remove-button";
-                remove.type = "button";
-                remove.textContent = "Remove";
-                remove.setAttribute("aria-label", `Remove ${file.name}`);
-
-                remove.addEventListener("click", () => {
-                    selectedFiles.splice(index, 1);
-                    renderFileList();
-                    clearMessage();
-                });
-
-                item.append(details, remove);
-                fileList.append(item);
-            });
-
-            fileCount.textContent =
-                `${selectedFiles.length} of ${MAX_FILES} selected`;
-
-            compareButton.disabled =
-                selectedFiles.length < 2 ||
-                selectedFiles.length > MAX_FILES;
-
-            selectionHint.textContent =
-                selectedFiles.length < 2
-                    ? "Select at least two documents to begin."
-                    : `${selectedFiles.length} documents ready for comparison.`;
-        }
-
-        fileInput.addEventListener("change", event => {
-            addFiles(Array.from(event.target.files));
-            fileInput.value = "";
-        });
-
-        dropzone.addEventListener("dragover", event => {
-            event.preventDefault();
-            dropzone.classList.add("drag-active");
-        });
-
-        dropzone.addEventListener("dragleave", event => {
-            if (!dropzone.contains(event.relatedTarget)) {
-                dropzone.classList.remove("drag-active");
-            }
-        });
-
-        dropzone.addEventListener("drop", event => {
-            event.preventDefault();
-            dropzone.classList.remove("drag-active");
-            addFiles(Array.from(event.dataTransfer.files));
-        });
-
-        function makeSummaryItem(value, label) {
-            const item = document.createElement("div");
-            item.className = "summary-item";
-
-            const number = document.createElement("span");
-            number.className = "summary-value";
-            number.textContent = String(value);
-
-            const caption = document.createElement("span");
-            caption.className = "summary-label";
-            caption.textContent = label;
-
-            item.append(number, caption);
-            return item;
-        }
-
-        function makePassage(label, text, start, end) {
-            const wrapper = document.createElement("div");
-            wrapper.className = "passage";
-
-            const heading = document.createElement("span");
-            heading.className = "passage-label";
-            heading.textContent = label;
-
-            const content = document.createElement("pre");
-            content.className = "passage-text";
-            content.textContent = text;
-
-            const offset = document.createElement("div");
-            offset.className = "offset";
-            offset.textContent = `Character offsets: ${start}–${end}`;
-
-            wrapper.append(heading, content, offset);
-            return wrapper;
-        }
-
-        function makeEvidence(match, type, index) {
-            const card = document.createElement("div");
-            card.className = "evidence-item";
-
-            const isNear = type === "Near copy";
-
-            const label = document.createElement("div");
-            label.className = isNear
-                ? "evidence-label near"
-                : "evidence-label";
-            label.textContent = `${type} · Evidence ${index + 1}`;
-
-            const grid = document.createElement("div");
-            grid.className = "evidence-grid";
-
-            grid.append(
-                makePassage(
-                    "Source document",
-                    match.source_text,
-                    match.source_start,
-                    match.source_end
-                ),
-                makePassage(
-                    "Target document",
-                    match.target_text,
-                    match.target_start,
-                    match.target_end
-                )
-            );
-
-            const stats = document.createElement("div");
-            stats.className = "evidence-stats";
-
-            const details = [
-                `Matched tokens: ${match.matched_token_count}`
-            ];
-
-            if (typeof match.similarity === "number") {
-                details.push(
-                    `Lexical region coverage: ${(match.similarity * 100).toFixed(1)}%`
-                );
-                details.push(
-                    `Unmatched source tokens: ${match.unmatched_source_tokens}`
-                );
-                details.push(
-                    `Unmatched target tokens: ${match.unmatched_target_tokens}`
-                );
-            }
-
-            stats.textContent = details.join(" · ");
-
-            card.append(label, grid, stats);
-            return card;
-        }
-
-        function renderPair(pair) {
-            const card = document.createElement("article");
-            card.className = "pair-card";
-
-            const title = document.createElement("h3");
-            title.className = "pair-title";
-            title.textContent =
-                `${pair.source_document}  ↔  ${pair.target_document}`;
-
-            const meta = document.createElement("div");
-            meta.className = "pair-meta";
-            meta.textContent =
-                `${pair.exact_match_count} exact matches · ` +
-                `${pair.near_copy_region_count} near-copy regions`;
-
-            card.append(title, meta);
-
-            const exact = pair.exact_matches || [];
-            const near = pair.near_copy_matches || [];
-
-            if (exact.length > 0) {
-                const section = document.createElement("section");
-                section.className = "evidence-section";
-
-                const heading = document.createElement("h4");
-                heading.className = "evidence-heading";
-                heading.textContent = "Exact token-sequence overlap";
-
-                exact.forEach((match, index) => {
-                    section.append(makeEvidence(match, "Exact reuse", index));
-                });
-
-                section.prepend(heading);
-                card.append(section);
-            }
-
-            if (near.length > 0) {
-                const section = document.createElement("section");
-                section.className = "evidence-section";
-
-                const heading = document.createElement("h4");
-                heading.className = "evidence-heading near";
-                heading.textContent = "Near-copy regions";
-
-                near.forEach((match, index) => {
-                    section.append(makeEvidence(match, "Near copy", index));
-                });
-
-                section.prepend(heading);
-                card.append(section);
-            }
-
-            if (exact.length === 0 && near.length === 0) {
-                const empty = document.createElement("div");
-                empty.className = "empty-state";
-                empty.textContent =
-                    "No exact or near-copy regions were detected for this pair.";
-                card.append(empty);
-            }
-
-            return card;
-        }
-
-        function renderResults(data) {
-            summaryGrid.replaceChildren();
-            pairResults.replaceChildren();
-
-            const exactCount = data.comparisons.reduce(
-                (sum, pair) => sum + pair.exact_match_count,
-                0
-            );
-
-            const nearCount = data.comparisons.reduce(
-                (sum, pair) => sum + pair.near_copy_region_count,
-                0
-            );
-
-            summaryGrid.append(
-                makeSummaryItem(data.document_count, "Documents compared"),
-                makeSummaryItem(data.pair_count, "Unique pairs"),
-                makeSummaryItem(exactCount + nearCount, "Evidence regions")
-            );
-
-            data.comparisons.forEach(pair => {
-                pairResults.append(renderPair(pair));
-            });
-
-            document.getElementById("resultsDescription").textContent =
-                `${data.document_count} documents · ${data.pair_count} unique comparisons`;
-
-            results.hidden = false;
-        }
-
-        compareButton.addEventListener("click", async () => {
-            if (selectedFiles.length < 2) {
-                showMessage("Select at least two documents.", "error");
-                return;
-            }
-
-            const formData = new FormData();
-
-            selectedFiles.forEach(file => {
-                formData.append("files", file);
-            });
-
-            compareButton.disabled = true;
-            compareButton.textContent = "Comparing...";
-            results.hidden = true;
-            clearMessage();
-            showMessage("Uploading and comparing documents...", "info");
-
-            try {
-                const response = await fetch("/api/compare", {
-                    method: "POST",
-                    body: formData
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    const detail =
-                        typeof data.detail === "string"
-                            ? data.detail
-                            : "The comparison request failed.";
-
-                    throw new Error(detail);
-                }
-
-                renderResults(data);
-                showMessage("Comparison completed successfully.", "info");
-
-                results.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            } catch (error) {
-                showMessage(
-                    error.message || "Could not connect to the ASOD API.",
-                    "error"
-                );
-            } finally {
-                compareButton.textContent = "Run comparison";
-                compareButton.disabled = selectedFiles.length < 2;
-            }
-        });
-
-        renderFileList();
-    </script>
+    <script src="/assets/js/app.js"></script>
 </body>
 </html>

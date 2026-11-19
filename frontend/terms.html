@@ -1,136 +1,106 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ASOD Terms of Use">
     <title>Terms of Use | ASOD</title>
+    <meta name="description" content="ASOD Terms of Use">
+    <meta name="theme-color" content="#0a1220">
     <link rel="icon" type="image/svg+xml" href="/assets/asod-logo-1.svg">
-    <style>
-        :root {
-            color-scheme: dark;
-            --background: #0a1220;
-            --surface: #111e30;
-            --border: #263950;
-            --text: #e8eff7;
-            --muted: #96a9bf;
-            --accent: #39bad5;
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            background: var(--background);
-            color: var(--text);
-            font-family: Inter, "Segoe UI", Arial, sans-serif;
-            font-size: 14px;
-            line-height: 1.7;
-        }
-        header, footer {
-            padding: 18px 5%;
-            border-bottom: 1px solid var(--border);
-        }
-        header a, footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        main {
-            width: min(850px, 90%);
-            margin: 45px auto 65px;
-        }
-        .content {
-            padding: 28px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            background: var(--surface);
-        }
-        h1 { font-size: 30px; }
-        h2 { margin-top: 28px; font-size: 17px; }
-        p, li { color: var(--muted); }
-        footer { border-top: 1px solid var(--border); border-bottom: 0; }
-    </style>
+    <link rel="stylesheet" href="/assets/css/asod.css">
 </head>
 <body>
-    <header>
-        <a href="/">← Back to ASOD</a>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="brand" href="/" aria-label="ASOD, back to workspace">
+                <img class="brand__logo" src="/assets/asod-logo-2.svg" alt="ASOD">
+                <span class="brand__divider" aria-hidden="true"></span>
+                <span class="brand__label">DOCUMENT ANALYSIS</span>
+            </a>
+            <nav class="site-nav" aria-label="Primary">
+                <a href="/">Workspace</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/terms" aria-current="page">Terms</a>
+            </nav>
+            <span class="header-spacer"></span>
+        </div>
     </header>
 
-    <main>
-        <article class="content">
-            <h1>Terms of Use</h1>
-            <p>Last updated: 17 November 2026</p>
+    <main class="page" id="main">
+        <div class="legal">
+            <nav class="legal__toc" aria-label="On this page">
+                <div class="legal__toc-title">On this page</div>
+                <ol>
+                        <li><a href="#s1">1. Purpose</a></li>
+                        <li><a href="#s2">2. Permitted use</a></li>
+                        <li><a href="#s3">3. Interpretation of results</a></li>
+                        <li><a href="#s4">4. No guarantee of accuracy</a></li>
+                        <li><a href="#s5">5. Availability and modifications</a></li>
+                        <li><a href="#s6">6. Limitation of responsibility</a></li>
+                        <li><a href="#s7">7. Changes to these terms</a></li>
+                        <li><a href="#s8">8. Developer</a></li>
+                </ol>
+            </nav>
+            <article class="legal__content">
+                <div class="eyebrow">ASOD</div>
+                <h1>Terms of Use</h1>
+                <p class="legal__meta">Last updated: 17 November 2026</p>
+                <p class="legal__intro">By using the Assignment Similarity and Overlap Detector (ASOD), you agree to the following terms.</p>
 
-            <p>
-                By using the Assignment Similarity and Overlap Detector
-                (ASOD), you agree to the following terms.
-            </p>
+                <section class="legal__section" id="s1">
+                    <h2>1. Purpose</h2>
+                    <p>ASOD is a document comparison tool designed to identify exact token-sequence matches and potential near-copy regions between uploaded documents.</p>
+                </section>
 
-            <h2>1. Purpose</h2>
-            <p>
-                ASOD is a document comparison tool designed to identify
-                exact token-sequence matches and potential near-copy
-                regions between uploaded documents.
-            </p>
+                <section class="legal__section" id="s2">
+                    <h2>2. Permitted use</h2>
+                    <p>You agree to use ASOD only for lawful purposes. You are responsible for ensuring that you have the necessary rights and authorization to upload and process the documents you submit.</p>
+                </section>
 
-            <h2>2. Permitted use</h2>
-            <p>
-                You agree to use ASOD only for lawful purposes. You are
-                responsible for ensuring that you have the necessary
-                rights and authorization to upload and process the
-                documents you submit.
-            </p>
+                <section class="legal__section" id="s3">
+                    <h2>3. Interpretation of results</h2>
+                    <p>ASOD provides textual overlap evidence based on its implemented comparison methods. A detected match does not, by itself, establish plagiarism, authorship, intent, academic misconduct, or copyright infringement.</p>
+                    <p>Results may contain false positives or false negatives. Users must examine the underlying passages and context before making decisions.</p>
+                </section>
 
-            <h2>3. Interpretation of results</h2>
-            <p>
-                ASOD provides textual overlap evidence based on its
-                implemented comparison methods. A detected match does
-                not, by itself, establish plagiarism, authorship, intent,
-                academic misconduct, or copyright infringement.
-            </p>
-            <p>
-                Results may contain false positives or false negatives.
-                Users must examine the underlying passages and context
-                before making decisions.
-            </p>
+                <section class="legal__section" id="s4">
+                    <h2>4. No guarantee of accuracy</h2>
+                    <p>ASOD is provided without a guarantee that every instance of textual overlap will be detected or that every reported region represents improper reuse.</p>
+                </section>
 
-            <h2>4. No guarantee of accuracy</h2>
-            <p>
-                ASOD is provided without a guarantee that every instance
-                of textual overlap will be detected or that every
-                reported region represents improper reuse.
-            </p>
+                <section class="legal__section" id="s5">
+                    <h2>5. Availability and modifications</h2>
+                    <p>The application may be modified, interrupted, or discontinued. Features and supported file formats may change as development continues.</p>
+                </section>
 
-            <h2>5. Availability and modifications</h2>
-            <p>
-                The application may be modified, interrupted, or
-                discontinued. Features and supported file formats may
-                change as development continues.
-            </p>
+                <section class="legal__section" id="s6">
+                    <h2>6. Limitation of responsibility</h2>
+                    <p>To the extent permitted by applicable law, the developer is not responsible for decisions or consequences arising solely from reliance on ASOD output without independent human review.</p>
+                </section>
 
-            <h2>6. Limitation of responsibility</h2>
-            <p>
-                To the extent permitted by applicable law, the developer
-                is not responsible for decisions or consequences arising
-                solely from reliance on ASOD output without independent
-                human review.
-            </p>
+                <section class="legal__section" id="s7">
+                    <h2>7. Changes to these terms</h2>
+                    <p>These terms may be revised when the application or its intended use changes. Continued use after an update constitutes acceptance of the revised terms.</p>
+                </section>
 
-            <h2>7. Changes to these terms</h2>
-            <p>
-                These terms may be revised when the application or its
-                intended use changes. Continued use after an update
-                constitutes acceptance of the revised terms.
-            </p>
-
-            <h2>8. Developer</h2>
-            <p>
-                ASOD is developed by Aryan Sengar.
-            </p>
-        </article>
+                <section class="legal__section" id="s8">
+                    <h2>8. Developer</h2>
+                    <p>ASOD is developed by Aryan Sengar.</p>
+                </section>
+            </article>
+        </div>
     </main>
 
-    <footer>
-        © 2026 Aryan Sengar · ASOD
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <span>&copy; 2026 Aryan Sengar &middot; ASOD, Assignment Similarity &amp; Overlap Detector</span>
+            <nav class="footer-links" aria-label="Legal information">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Use</a>
+            </nav>
+        </div>
     </footer>
 </body>
 </html>
